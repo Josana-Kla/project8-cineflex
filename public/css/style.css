@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    background-color: #C3CFD9;
+    color: #E8833A;
+
+    font-size: 34px;
+
+    height: 67px;
+}
+
+
