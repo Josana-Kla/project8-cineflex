@@ -43,6 +43,8 @@ body {
         background-color: aqua;
 
         margin-top: 67px;
+
+        overflow: scroll;
     }
 
     main h2 {
@@ -90,6 +92,86 @@ body {
         height: 89px;
     }
 
+    .seats-content {
+        flex-direction: column;
+        justify-content: flex-start;
+
+        height: calc(100vh - 67px - 110px - 117px);
+
+        overflow: scroll;
+    }
+
+    .seats-list {
+        width: 327px;
+        height: 203px;
+
+        flex-wrap: wrap;
+        gap: 7px;
+
+        margin-bottom: 15px;
+    }
+
+    .seats-list div {
+        background-color: #C3CFD9;
+        border: 1px solid #808F9D;
+        border-radius: 50%;
+
+
+        width: 26px;
+        height: 26px;
+    }
+
+    .seats-list div p {
+        color: #000000;
+        font-size: 11px;
+        letter-spacing: 4%;
+    }
+
+    .subtitles {
+        gap: 18px;
+
+        margin-bottom: 42px;
+    }
+
+    .user-datas {
+        margin-bottom: 50px;
+    }
+
+    .user-datas div {
+        width: 327px;
+
+        margin-bottom: 8px;
+    }
+
+    .user-datas div input {
+        border-radius: 3px;
+        border: 1px solid #D4D4D4;
+
+        color: #AFAFAF;
+        font-size: 18px;
+        font-style: italic;
+
+        width: 100%;
+        height: 51px;
+
+        padding-left: 15px;
+    }
+
+    .seats-content > button {
+        background-color: #E8833A;
+        border-radius: 3px;
+        border: none;
+
+        width: 225px;
+        height: 42px;
+
+        color: #FFFFFF;
+        font-size: 18px;
+        letter-spacing: 4%;
+        text-align: center;
+
+        margin-bottom: 50px;
+    }
 }
 
 
