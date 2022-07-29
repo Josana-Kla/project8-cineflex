@@ -1,3 +1,4 @@
+import DateMovie from "../components/date-movie/DateMovie";
 import Footer from "../components/footer/Footer";
 
 export default function DateAndHour() {
@@ -10,9 +11,11 @@ export default function DateAndHour() {
         <>
             <main>
                 <h2 className="flex-center">Selecione o horário</h2>
-                {dateWeeks.map((dateWeek, index) => (
-                    <Date day={dateWeek.day} date={dateWeek.date} key={index} />
-                ))}
+                <div className="date">
+                    {dateWeeks.map((dateWeek, index) => (
+                        <DateMovie day={dateWeek.day} date={dateWeek.date} key={index} />
+                    ))}
+                </div>
             </main>
 
             <Footer />
@@ -20,14 +23,3 @@ export default function DateAndHour() {
     )
 }
 
-function Date( { day, date} ) {
-    return (
-        <div className="date">
-            <h3>{day} - {date}</h3>
-            <div className="hours">
-                <button>15:00</button>
-                <button>19:00</button>
-            </div>
-        </div>
-    )
-}
