@@ -1,162 +1,20 @@
 import Footer from "../components/footer/Footer";
 
 export default function SeatsMovie() {
+    let seats = [];
+    for(let i = 1; i <= 50; i++) {
+        seats.push(i);
+    }
+        
     return (
         <>
             <main>
                 <h2 className="flex-center">Selecione o(s) assento(s)</h2>
                 <div className="seats-content flex-center">
                     <div className="seats-list flex-center">
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
-                        <div className="flex-center">
-                            <p>01</p>
-                        </div>
+                        {seats.map((seat, index ) => (
+                            <UserSeat  number={seat} key={index} />
+                        ))}
                     </div>
 
                     <div className="subtitles flex-center">
@@ -191,5 +49,13 @@ export default function SeatsMovie() {
 
             <Footer />
         </>
+    )
+}
+
+function UserSeat( { number } ) {
+    return (
+        <div className="flex-center">
+            <p>{number}</p>
+        </div>
     )
 }

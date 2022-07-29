@@ -2,7 +2,7 @@ import Footer from "../components/footer/Footer";
 
 export default function DateAndHour() {
     const dateWeeks = [
-        { day: "Sexta-feira", date: "25/06/2021"},
+        { day: "Sexta-feira", date: "25/06/2021" },
         { day: "Quinta-feira", date: "26/06/2021" }
     ];
 
