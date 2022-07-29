@@ -1,10 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default function Cards ( { image, key } ) {
-    const { idFilme } = useParams();
-
+export default function Cards ( { image, id } ) {
     return (
-        <Link to="/sessoes/:{key}">
+        <Link to={`/sessoes/${id}`}>
             <div className="movie-card">
                 <img className="movie-card-img" src={image} alt="" />
             </div>

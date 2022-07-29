@@ -20,7 +20,7 @@ export default function Movies() {
             <h2 className="flex-center">Selecione o filme</h2>
             <div className="movies-list flex-center">
                 {cards.map((card, index) => 
-                    <Cards key={card.id} image={card.posterURL} />
+                    <Cards key={card.id} id={card.id} image={card.posterURL} />
                 )}
             </div>
         </main>

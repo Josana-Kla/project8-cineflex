@@ -1,19 +1,32 @@
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 import DateMovie from "../components/date-movie/DateMovie";
 import Footer from "../components/footer/Footer";
 
 export default function DateAndHour() {
-    const dateWeeks = [
-        { day: "Sexta-feira", date: "25/06/2021" },
-        { day: "Quinta-feira", date: "26/06/2021" }
-    ];
+    const [ sessions, setSessions ] = useState([]);
+    const { idFilme } = useParams();
+
+    useEffect(() => {
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${idFilme}/showtimes`);
+
+        promise.then((response) => {
+            setSessions(response.data.days)
+        });
+        promise.catch(() => console.log("error"));
+
+    }, []);
+
 
     return (
         <>
             <main>
                 <h2 className="flex-center">Selecione o horário</h2>
                 <div className="date">
-                    {dateWeeks.map((dateWeek, index) => (
-                        <DateMovie day={dateWeek.day} date={dateWeek.date} key={index} />
+                    {sessions.map((session, index) => (
+                        <DateMovie day={session.weekday} date={session.date} key={index} />
                     ))}
                 </div>
             </main>
