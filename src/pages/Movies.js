@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Cards from '../components/cards/Cards';
 
 export default function Movies() {
     const [ cards, setCards ] = useState([]);
@@ -23,13 +24,5 @@ export default function Movies() {
                 )}
             </div>
         </main>
-    )
-}
-
-function Cards ( { image } ) {
-    return (
-        <div className="movie-card">
-            <img className="movie-card-img" src={image} alt="" />
-        </div>
     )
 }
