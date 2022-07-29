@@ -1,3 +1,4 @@
+import Subtitles from "../components/choose-seats/subtitles/Subtitles";
 import Footer from "../components/footer/Footer";
 
 export default function SeatsMovie() {
@@ -5,7 +6,13 @@ export default function SeatsMovie() {
     for(let i = 1; i <= 50; i++) {
         seats.push(i);
     }
-        
+    
+    const subtitles = [
+        { color: "green-circle", name: "Selecionado"},
+        { color: "gray-circle", name: "Disponível"},
+        { color: "yellow-circle", name: "Indisponível"}
+    ]
+
     return (
         <>
             <main>
@@ -18,18 +25,9 @@ export default function SeatsMovie() {
                     </div>
 
                     <div className="subtitles flex-center">
-                        <div>
-                            <div>bolinha</div>
-                            <p>Selecionado</p>
-                        </div>
-                        <div>
-                            <div>bolinha</div>
-                            <p>Disponível</p>
-                        </div>
-                        <div>
-                            <div>bolinha</div>
-                            <p>Indisponível</p>
-                        </div>
+                        {subtitles.map((subtitle, index) => (
+                            <Subtitles color={subtitle.color} name={subtitle.name} key={index} />
+                        ))}
                     </div>
 
                     <div className="user-datas">
