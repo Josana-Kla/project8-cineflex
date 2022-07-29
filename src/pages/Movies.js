@@ -5,18 +5,20 @@ export default function Movies() {
     const [ cards, setCards ] = useState([]);
 
     useEffect(() => {
-        const request = axios.get("https://mock-api.driven.com.br/api/v7/cineflex/movies");
+        const promise = axios.get("https://mock-api.driven.com.br/api/v7/cineflex/movies");
 
-        request.then(response => {
+        promise.then(response => {
             setCards(response.data);
         });
+        promise.catch(() => console.log("error"));
+
     }, []);
 
     return (
         <main>
             <h2 className="flex-center">Selecione o filme</h2>
             <div className="movies-list flex-center">
-                {cards.map((card, index)=> 
+                {cards.map((card, index) => 
                     <Cards key={card.id} image={card.posterURL} />
                 )}
             </div>
