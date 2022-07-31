@@ -25,17 +25,32 @@ body {
         height: 100%;
     }
 
-    .green-circle {
+    .seats-list .green-circle {
         background-color: #8DD7CF;
         border: 1px solid #1AAE9E;
     }
 
-    .gray-circle {
+    .seats-list .gray-circle {
         background-color: #C3CFD9;
         border: 1px solid #7B8B99;
     }
 
-    .yellow-circle {
+    .seats-list .yellow-circle {
+        background-color: #FBE192;
+        border: 1px solid #F7C52B;
+    }
+
+    .subtitles .green-circle {
+        background-color: #8DD7CF;
+        border: 1px solid #1AAE9E;
+    }
+
+    .subtitles .gray-circle {
+        background-color: #C3CFD9;
+        border: 1px solid #7B8B99;
+    }
+
+    .subtitles .yellow-circle {
         background-color: #FBE192;
         border: 1px solid #F7C52B;
     }

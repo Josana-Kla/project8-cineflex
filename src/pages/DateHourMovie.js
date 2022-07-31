@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import Footer from "../components/footer/Footer";
 
-export default function DateAndHour(props) {
+export default function DateAndHour() {
     
     const [ sessions, setSessions ] = useState([]);
     const [ chosenMovie, setChosenMovie ] = useState([]);
@@ -21,18 +21,19 @@ export default function DateAndHour(props) {
 
     }, []);
 
-    console.log(props)
 
     return (
         <>
             <main>
                 <h2 className="flex-center">Selecione o horário</h2>
                 {sessions.map((session, index) => (
-                    <div className="date" key={index}>
+                    <div className="date" key={index} >
                         <h3>{session.weekday} - {session.date}</h3>
                         <div className="hours">
                             {session.showtimes.map((value, index) => (
-                                <button key={index}>{value.name}</button>
+                                <Link to={`/assentos/${value.id}`}>
+                                    <button key={index}>{value.name}</button>
+                                </Link>
                             ))}
                         </div>
                     </div>
@@ -40,7 +41,6 @@ export default function DateAndHour(props) {
             </main>
 
             <Footer image={chosenMovie.posterURL} title={chosenMovie.title} >
-                {/* <h3>{Quinta-feira} - {15:00}</h3> */}
             </Footer>
         </>
     )
