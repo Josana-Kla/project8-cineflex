@@ -61,7 +61,7 @@ export default function SeatsMovie() {
                         </div>
                     </div>
 
-                    <button>Reservar assento(s)</button>
+                    <button className="orange-button-finish">Reservar assento(s)</button>
                 </div>
             </main>
 
