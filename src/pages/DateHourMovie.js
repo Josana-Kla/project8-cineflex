@@ -2,11 +2,12 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-/* import DateMovie from "../components/date-movie/DateMovie";
- */import Footer from "../components/footer/Footer";
+import Footer from "../components/footer/Footer";
 
-export default function DateAndHour() {
+export default function DateAndHour(props) {
+    
     const [ sessions, setSessions ] = useState([]);
+    const [ chosenMovie, setChosenMovie ] = useState([]);
     const { idFilme } = useParams();
 
     useEffect(() => {
@@ -14,12 +15,13 @@ export default function DateAndHour() {
 
         promise.then((response) => {
             setSessions(response.data.days);
+            setChosenMovie(response.data);
         });
         promise.catch(() => console.log("error"));
 
     }, []);
 
-   
+    console.log(props)
 
     return (
         <>
@@ -37,10 +39,12 @@ export default function DateAndHour() {
                 ))}
             </main>
 
-            <Footer />
+            <Footer image={chosenMovie.posterURL} title={chosenMovie.title} >
+                {/* <h3>{Quinta-feira} - {15:00}</h3> */}
+            </Footer>
         </>
     )
 }
 
-{/* <DateMovie day={session.weekday} date={session.date} hour={session.showtimes[eachHour]} key={index} /> */}
+
 

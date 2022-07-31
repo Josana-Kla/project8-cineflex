@@ -1,12 +1,12 @@
-export default function Footer() {
+export default function Footer( {image, title, children } ) {
     return (
         <footer>
             <div className="movie-chosen movie-card">
-                <img className="movie-card-img" src="../../assets/img/movie-2067.png" alt="" />
+                <img className="movie-card-img" src={image} alt="" />
             </div>
             <div>
-                <h3>Enola Holmes</h3>
-                <h3>Quinta-feira - 15:00</h3>
+                <h3>{title}</h3>
+                {children}
             </div>
         </footer>
     )
