@@ -67,9 +67,9 @@ export default function SeatsMovie() {
                 </div>
             </main>
 
-            {/* <Footer image={hourSelected.movie.posterURL} title={hourSelected.movie.title} >
-                <h3>{hourSelected.day.weekday} - {hourSelected.name}</h3>
-            </Footer> */}
+            <Footer image={hourSelected.movie?.posterURL} title={hourSelected.movie?.title} >
+                <h3>{hourSelected.day?.weekday} - {hourSelected.name}</h3>
+            </Footer>
         </>
     )
 }
@@ -95,7 +95,7 @@ function UserSeat( { number, seatAvailable, setColor, color, id, listAllSeats } 
     console.log(allAvailables); */
 
     function saveSeatsAvailableInState() {
-        setSeatsSelected(true);
+        setSeatsSelected(!seatsSelected);
         if(color === "yellow-circle") {
             alert("Esse assento não está disponível");
         }
