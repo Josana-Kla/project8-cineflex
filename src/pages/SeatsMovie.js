@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import Subtitles from "../components/choose-seats/subtitles/Subtitles";
@@ -12,9 +12,6 @@ export default function SeatsMovie() {
         { color: "yellow-circle", name: "Indisponível"}
     ];
 
-     /* for(let i = 1; i <= 50; i++) {
-        seats.push(i);
-    }; */
 
     const [ hourSelected, setHourSelected ] = useState([]);
     const [ seats, setSeats ] = useState([]);
@@ -40,7 +37,7 @@ export default function SeatsMovie() {
                 <div className="seats-content flex-center">
                     <div className="seats-list flex-center">
                         {seats.map((seat, index ) => (
-                            <UserSeat number={seat.name} seatAvailable={seat.isAvailable} setColor={setColors} color={colors} key={index} id={seat.id} />
+                            <UserSeat number={seat.name} seatAvailable={seat.isAvailable} setColor={setColors} color={colors} key={index} id={seat.id} listAllSeats={seats} />
                         ))}
                     </div>
 
@@ -50,18 +47,23 @@ export default function SeatsMovie() {
                         ))}
                     </div>
 
-                    <div className="user-datas">
-                        <div>
-                            <h4>Nome do comprador:</h4>
-                            <input placeholder="Digite seu nome..." />
+                    <form onSubmit>
+                        <div className="user-datas">
+                            <div>
+                                <label>Nome do comprador:</label>
+                                <input type="name" placeholder="Digite seu nome..." />
+                            </div>
+                            <div>
+                                <label>CPF do comprador:</label>
+                                <input type="text" placeholder="Digite seu CPF..." />
+                            </div>
                         </div>
-                        <div>
-                            <h4>CPF do comprador:</h4>
-                            <input placeholder="Digite seu CPF..." />
-                        </div>
-                    </div>
+                        
+                        <Link to={"/sucesso"}>
+                            <button type="submit" className="orange-button-finish">Reservar assento(s)</button>
+                        </Link>
+                    </form>
 
-                    <button className="orange-button-finish">Reservar assento(s)</button>
                 </div>
             </main>
 
@@ -72,17 +74,35 @@ export default function SeatsMovie() {
     )
 }
 
-function UserSeat( { number, seatAvailable, setColor, color } ) {
-    if(seatAvailable === false) {
-       setColor("yellow-circle");
-       color = "yellow-circle";
-    } else if (seatAvailable === true) {
+
+function UserSeat( { number, seatAvailable, setColor, color, id, listAllSeats } ) {
+    const [ seatsSelected, setSeatsSelected ] = useState(false);
+
+    if(seatAvailable === true && seatsSelected === false) {
         setColor("grey-circle");
         color = "grey-circle";
+    } else if (seatAvailable === true && seatsSelected === true) {
+        setColor("green-circle");
+        color = "green-circle";
+    } else {
+        setColor("yellow-circle");
+        color = "yellow-circle";
+    }
+
+    let copyListSeats = [...listAllSeats, id, seatAvailable];
+    /* console.log(copyListSeats); */
+    /* let allAvailables = copyListSeats.filter(function(obj) {return obj.isAvailable === true});
+    console.log(allAvailables); */
+
+    function saveSeatsAvailableInState() {
+        setSeatsSelected(true);
+        if(color === "yellow-circle") {
+            alert("Esse assento não está disponível");
+        }
     }
 
     return (
-        <div className={`flex-center ${color}`}>
+        <div onClick={saveSeatsAvailableInState} className={`flex-center ${color}`}>
             <p>{number}</p>
         </div>
     )

@@ -209,11 +209,21 @@ body {
         margin-bottom: 42px;
     }
 
+    .subtitles span {
+        flex-direction: column;
+
+        color: #4E5A65;
+        font-size: 13px;
+        letter-spacing: -1.3%;
+    }
+
     .subtitles span div {
         border-radius: 50%;
 
         width: 25px;
         height: 25px;
+
+        margin-bottom: 4px;
     }
 
     .user-datas {
@@ -223,7 +233,12 @@ body {
     .user-datas div {
         width: 327px;
 
-        margin-bottom: 8px;
+        margin-bottom: 15px;
+    }
+
+    .user-datas div label {
+        color: #293845;
+        font-size: 18px;
     }
 
     .user-datas div input {
@@ -234,6 +249,7 @@ body {
         height: 51px;
 
         padding-left: 15px;
+        margin-top: 5px;
     }
 
     .user-datas div input::placeholder {
@@ -255,7 +271,7 @@ body {
         letter-spacing: 4%;
         text-align: center;
 
-        margin-bottom: 50px;
+        margin: 0 50px;
     }
 
     .success-content {
