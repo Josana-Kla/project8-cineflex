@@ -12,6 +12,7 @@ export default function SeatsMovie() {
         { color: "yellow-circle", name: "Indisponível"}
     ];
 
+    //TODO:MUDAR NOME DA VARIAVEL DE ESTADO HOURSELECTED
     const [ hourSelected, setHourSelected ] = useState([]);
     const [ seats, setSeats ] = useState([]);
     const [ listAllSeatsSelected, setListAllSeatsSelected ] = useState([]);
@@ -42,8 +43,13 @@ export default function SeatsMovie() {
 		});
         promise.then(
             navigate("/sucesso", {
-
-        }))
+                /* name: event.target.name.value,
+                cpf: event.target.cpf.value,
+                movie: hourSelected.movie.title,
+                date: hourSelected.name,
+                day: hourSelected.day.weekday */
+            }
+        ))
 	}
 
     function validateCpf(e) {
@@ -114,7 +120,7 @@ function UserSeat( { number, seatAvailable, setColor, color, id, listAllSeatsSel
         color = "yellow-circle";
     }
     
-
+    //TODO: Pegar e guardar número e id do assento selecionado
     /* let copyListSeats = [...currentSeat, id, number, seatAvailable]; */
     /* console.log(copyListSeats); */
     /* let allAvailables = copyListSeats.filter(function(obj) {return obj.isAvailable === true});

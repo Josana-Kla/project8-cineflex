@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function SuccessPage() {
     return (
         <main>
@@ -20,7 +22,9 @@ export default function SuccessPage() {
                         <p>CPF: 123.456.789-10</p>
                     </span>
                 </div>
-                <button className="orange-button-finish">Voltar para Home</button>
+                <Link to="/">
+                    <button className="orange-button-finish">Voltar para Home</button>
+                </Link>
             </div>
         </main>
     )
