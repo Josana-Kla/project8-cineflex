@@ -52,16 +52,6 @@ export default function SeatsMovie() {
         ))
 	}
 
-    function validateCpf(e) {
-        let regex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
-
-        setCpf(e.target.value);
-        if(cpf.match(regex)) {
-            setCpf(e.target.value);
-            console.log(cpf);
-        }
-    }
-
     return (
         <>
             <main>
@@ -87,7 +77,7 @@ export default function SeatsMovie() {
                             </div>
                             <div>
                                 <label>CPF do comprador:</label>
-                                <input type="text" value={cpf} onChange={validateCpf} placeholder="Digite seu CPF..." maxLength="14" required />
+                                <input type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value={cpf} onChange={e =>  setCpf(e.target.value)} placeholder="Digite seu CPF..." maxLength="14" required />
                             </div>
                         </div>
                         
