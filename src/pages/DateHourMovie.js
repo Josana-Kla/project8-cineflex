@@ -26,18 +26,20 @@ export default function DateAndHour() {
         <>
             <main>
                 <h2 className="flex-center">Selecione o horário</h2>
-                {sessions.map((session, index) => (
-                    <div className="date" key={index} >
-                        <h3>{session.weekday} - {session.date}</h3>
-                        <div className="hours">
-                            {session.showtimes.map((value, index) => (
-                                <Link to={`/assentos/${value.id}`}>
-                                    <button key={index}>{value.name}</button>
-                                </Link>
-                            ))}
+                <div className="content-date">
+                    {sessions.map((session, index) => (
+                        <div className="date" key={index} >
+                            <h3>{session.weekday} - {session.date}</h3>
+                            <div className="hours">
+                                {session.showtimes.map((value, index) => (
+                                    <Link to={`/assentos/${value.id}`}>
+                                        <button key={index}>{value.name}</button>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </main>
 
             <Footer image={chosenMovie.posterURL} title={chosenMovie.title} >
