@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import Subtitles from "../components/choose-seats/subtitles/Subtitles";
@@ -12,11 +12,14 @@ export default function SeatsMovie() {
         { color: "yellow-circle", name: "Indisponível"}
     ];
 
-
     const [ hourSelected, setHourSelected ] = useState([]);
     const [ seats, setSeats ] = useState([]);
+    const [ listAllSeatsSelected, setListAllSeatsSelected ] = useState([]);
     const [ colors, setColors ] = useState("");
+    const [ cpf, setCpf ] = useState('');
+    const [ name, setName ] = useState('');
     const { idSessao } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`);
@@ -29,7 +32,30 @@ export default function SeatsMovie() {
 
     }, []);
 
-    
+    function sendDatas(event) {
+        event.preventDefault();
+      
+		const promise = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", {
+			ids: [1, 3, 4],
+            name: name,
+            cpf: cpf
+		});
+        promise.then(
+            navigate("/sucesso", {
+
+        }))
+	}
+
+    function validateCpf(e) {
+        let regex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+
+        setCpf(e.target.value);
+        if(cpf.match(regex)) {
+            setCpf(e.target.value);
+            console.log(cpf);
+        }
+    }
+
     return (
         <>
             <main>
@@ -37,7 +63,7 @@ export default function SeatsMovie() {
                 <div className="seats-content flex-center">
                     <div className="seats-list flex-center">
                         {seats.map((seat, index ) => (
-                            <UserSeat number={seat.name} seatAvailable={seat.isAvailable} setColor={setColors} color={colors} key={index} id={seat.id} listAllSeats={seats} />
+                            <UserSeat number={seat.name} seatAvailable={seat.isAvailable} setColor={setColors} color={colors} key={index} id={seat.id} listAllSeatsSelected={listAllSeatsSelected} currentSeat={seat} setListAllSeatsSelected={setListAllSeatsSelected} />
                         ))}
                     </div>
 
@@ -46,22 +72,20 @@ export default function SeatsMovie() {
                             <Subtitles color={subtitle.color} name={subtitle.name} key={index} />
                         ))}
                     </div>
-
-                    <form onSubmit>
+                            
+                    <form onSubmit={sendDatas}>
                         <div className="user-datas">
                             <div>
                                 <label>Nome do comprador:</label>
-                                <input type="name" placeholder="Digite seu nome..." />
+                                <input type="name" value={name} onChange={e => setName(e.target.value)} placeholder="Digite seu nome..." required />
                             </div>
                             <div>
                                 <label>CPF do comprador:</label>
-                                <input type="text" placeholder="Digite seu CPF..." />
+                                <input type="text" value={cpf} onChange={validateCpf} placeholder="Digite seu CPF..." maxLength="14" required />
                             </div>
                         </div>
                         
-                        <Link to={"/sucesso"}>
-                            <button type="submit" className="orange-button-finish">Reservar assento(s)</button>
-                        </Link>
+                        <button type="submit" className="orange-button-finish">Reservar assento(s)</button>
                     </form>
 
                 </div>
@@ -75,7 +99,7 @@ export default function SeatsMovie() {
 }
 
 
-function UserSeat( { number, seatAvailable, setColor, color, id, listAllSeats } ) {
+function UserSeat( { number, seatAvailable, setColor, color, id, listAllSeatsSelected, currentSeat, setListAllSeatsSelected } ) {
     const [ seatsSelected, setSeatsSelected ] = useState(false);
 
     if(seatAvailable === true && seatsSelected === false) {
@@ -84,18 +108,21 @@ function UserSeat( { number, seatAvailable, setColor, color, id, listAllSeats } 
     } else if (seatAvailable === true && seatsSelected === true) {
         setColor("green-circle");
         color = "green-circle";
+        setListAllSeatsSelected(currentSeat);
     } else {
         setColor("yellow-circle");
         color = "yellow-circle";
     }
+    
 
-    let copyListSeats = [...listAllSeats, id, seatAvailable];
+    /* let copyListSeats = [...currentSeat, id, number, seatAvailable]; */
     /* console.log(copyListSeats); */
     /* let allAvailables = copyListSeats.filter(function(obj) {return obj.isAvailable === true});
     console.log(allAvailables); */
 
     function saveSeatsAvailableInState() {
         setSeatsSelected(!seatsSelected);
+        
         if(color === "yellow-circle") {
             alert("Esse assento não está disponível");
         }
