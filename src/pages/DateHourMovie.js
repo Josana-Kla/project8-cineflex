@@ -42,8 +42,7 @@ export default function DateAndHour() {
                 </div>
             </main>
 
-            <Footer image={chosenMovie.posterURL} title={chosenMovie.title} >
-            </Footer>
+            <Footer image={chosenMovie.posterURL} title={chosenMovie.title}></Footer>
         </>
     )
 }
