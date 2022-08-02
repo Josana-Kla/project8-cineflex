@@ -35,7 +35,8 @@ export default function SeatsMovie() {
 
     function sendDatas(event) {
         event.preventDefault();
-      
+        console.log(hourSelected.movie.title);
+        /*falta pegar os ids */
 		const promise = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", {
 			ids: [1, 3, 4],
             name: name,
@@ -43,11 +44,13 @@ export default function SeatsMovie() {
 		});
         promise.then(
             navigate("/sucesso", {
-                /* name: event.target.name.value,
-                cpf: event.target.cpf.value,
-                movie: hourSelected.movie.title,
-                date: hourSelected.name,
-                day: hourSelected.day.weekday */
+                state: {
+                    name: name,
+                    cpf: cpf,
+                    movie: hourSelected.movie.title,
+                    date: hourSelected.day.date,
+                    hour: hourSelected.name
+                }
             }
         ))
 	}

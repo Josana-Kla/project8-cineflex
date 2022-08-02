@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function SuccessPage() {
+    const location = useLocation();
+
     return (
         <main>
             <h2 className="flex-center success-order">Pedido feito com sucesso!</h2>
@@ -8,8 +11,8 @@ export default function SuccessPage() {
                 <div className="success-content-datas">
                     <span>
                         <h3>Filme e sessão</h3>
-                        <p>Enola Holmes</p>
-                        <p>24/06/2021 15:00</p>
+                        <p>{location.state.movie}</p>
+                        <p>{location.state.date} {location.state.hour}</p>
                     </span>
                     <span>
                         <h3>Ingressos</h3>
@@ -18,8 +21,8 @@ export default function SuccessPage() {
                     </span>
                     <span>
                         <h3>Comprador</h3>
-                        <p>Nome: João da Silva Sauro</p>
-                        <p>CPF: 123.456.789-10</p>
+                        <p>Nome: {location.state.name}</p>
+                        <p>CPF: {location.state.cpf}</p>
                     </span>
                 </div>
                 <Link to="/">
